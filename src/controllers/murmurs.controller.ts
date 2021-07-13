@@ -1,4 +1,7 @@
 import { Request, Response } from "express";
+import { components } from '../models/openapi/schema';
+
+type ReqCreateMurmur = components["requestBodies"]["ReqCreateMurmur"];
 
 const db = require("../migrate/models/index.js");
 const murmurs = db.murmurs;

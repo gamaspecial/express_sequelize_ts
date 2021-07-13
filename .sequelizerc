@@ -1,0 +1,10 @@
+const path = require('path')
+
+const basePath = process.env.BASE_PATH || process.cwd();
+
+module.exports = {
+  'config':          path.resolve(basePath, 'config', 'database.js'),
+  'migrations-path': path.resolve(basePath, 'src/migrate', 'migrations'),
+  'models-path':     path.resolve(basePath, 'src/migrate', 'models'),
+  'seeders-path':    path.resolve(basePath, 'src/migrate', 'seeders'),
+}

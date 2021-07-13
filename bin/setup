@@ -1,0 +1,10 @@
+#!/bin/sh
+set -eux
+
+export NODE_ENV=development
+export BASE_PATH=`pwd`
+export MYSQL_USERNAME=root
+export MYSQL_PASSWORD=root
+export MYSQL_DATABASE=sampleapp
+export MYSQL_HOST=localhost
+export MODEL_PATH=`pwd`/src/migrate/models/*.model.ts

@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  app:
+    image: murmur
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: yarn watch
+    volumes:
+      - .:/myapp
+      - node_modules:/myapp/node_modules
+    ports:
+      - 3000:3000
+    env_file:
+      - ./env/development/app.env
+    depends_on:
+      - db
+
+  db:
+    image: mysql:5.7
+    ports:
+      - 3307:3306
+    volumes:
+      - db-data:/var/lib/mysql
+    env_file:
+      - ./env/development/db.env
+
+volumes:
+  node_modules:
+    driver: local
+  db-data:
+    driver: local

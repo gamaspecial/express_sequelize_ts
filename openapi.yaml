@@ -50,7 +50,10 @@ paths:
             type: integer
             format: int64
       requestBody:
-        $ref: '#/components/requestBodies/ReqCreateMurmur'
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateMurmur'
       responses:
         '201':
           description: Created
@@ -96,16 +99,13 @@ components:
         - postUserName
         - createdAt
         - updatedAt
-  requestBodies:
-    ReqCreateMurmur:
-      description: createMurmur
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              text:
-                type: string
+    CreateMurmur:
+      type: object
+      properties:
+        text:
+          type: string
+      required:
+        - text
   responses:
     ResHealthcheck:
       description: pong

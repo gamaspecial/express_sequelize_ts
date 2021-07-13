@@ -32,6 +32,9 @@ export interface components {
       createdAt: string;
       updatedAt: string;
     };
+    CreateMurmur: {
+      text: string;
+    };
   };
   responses: {
     /** pong */
@@ -44,16 +47,6 @@ export interface components {
     ResGetMurmurs: {
       content: {
         "application/json": components["schemas"]["Murmur"][];
-      };
-    };
-  };
-  requestBodies: {
-    /** createMurmur */
-    ReqCreateMurmur: {
-      content: {
-        "application/json": {
-          text?: string;
-        };
       };
     };
   };
@@ -94,7 +87,11 @@ export interface operations {
       /** Created */
       201: unknown;
     };
-    requestBody: components["requestBodies"]["ReqCreateMurmur"];
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["CreateMurmur"];
+      };
+    };
   };
 }
 

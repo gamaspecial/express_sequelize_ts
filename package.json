@@ -9,7 +9,7 @@
   "private": true,
   "scripts": {
     "watch": "nodemon",
-    "db:create": "sequelize db:create --config config/database.js",
+    "db:create": "sequelize db:create --config config/database.js --charset=utf8mb4",
     "db:migrate": "sequelize db:migrate --config config/database.js",
     "db:rollback": "sequelize db:migrate:undo --config config/database.js",
     "generate:openapi-ts": "npx openapi-typescript openapi.yaml --output src/models/openapi/schema.ts"
@@ -20,6 +20,7 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-list-endpoints": "^5.0.0",
+    "express-validator": "^6.12.0",
     "mysql2": "^2.2.5",
     "openapi-typescript": "^4.0.2",
     "sequelize": "^6.5.0"

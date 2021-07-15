@@ -14,7 +14,7 @@ const port = 3000;
 
 app.use('/', createRouter());
 // app.use('/users/', create...());
-app.use('/users/:userId/murmurs', createMurmursRouter());
+app.use('/users', createMurmursRouter());
 
 app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}/`);

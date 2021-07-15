@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { components } from '../models/openapi/schema';
+import { validationResult } from 'express-validator';
 
 type CreateMurmur = components["schemas"]["CreateMurmur"];
 
@@ -9,17 +10,51 @@ const murmurs = db.murmurs;
 export default {
   create: (req: Request, res: Response) => {
 
-    murmurs
+    // todo:
+    // length validate
+
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    const body: CreateMurmur = req.body;
+
+    return murmurs
       .create({
-        text: "test",
+        text: body.text,
         postUserId: req.params.userId,
       })
       .then((murmur: typeof murmurs) => {
         console.log(murmur);
-        console.log(body);
-        var param = { result: "Hello World !" };
+
         res.header("Content-Type", "application/json; charset=utf-8");
-        res.send(param);
+        res.sendStatus(201);
+      });
+  },
+
+  getMurmursByUserId: (req: Request, res: Response) => {
+
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    // todo:
+    // limit
+    // utc
+    // date format
+    return murmurs
+      .findAll({
+        where: { postUserId: req.params.userId },
+        order: [['updatedAt', 'DESC']],
+      })
+      .then((murmur: typeof murmurs[]) => {
+        console.log(murmur);
+
+        res.header("Content-Type", "application/json; charset=utf-8");
+        res.json(murmur);
+        res.sendStatus(200);
       });
   },
 };

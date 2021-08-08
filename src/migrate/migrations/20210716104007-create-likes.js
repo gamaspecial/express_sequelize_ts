@@ -1,15 +1,14 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('users', {
-      id: {
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER
+    await queryInterface.createTable('likes', {
+      userId: {
+        type: Sequelize.INTEGER,
+        primaryKey: true
       },
-      name: {
-        type: Sequelize.STRING
+      murmurId: {
+        type: Sequelize.INTEGER,
+        primaryKey: true
       },
       created_at: {
         allowNull: false,
@@ -22,6 +21,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('users');
+    await queryInterface.dropTable('likes');
   }
 };

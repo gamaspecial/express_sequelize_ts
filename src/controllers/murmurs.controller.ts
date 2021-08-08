@@ -30,6 +30,9 @@ export default {
 
         res.header("Content-Type", "application/json; charset=utf-8");
         res.sendStatus(201);
+      // }).catch((e) => {
+        // res.
+        // res.sendStatus(500);
       });
   },
 
@@ -44,6 +47,7 @@ export default {
     // limit
     // utc
     // date format
+    // user followerf
     return murmurs
       .findAll({
         where: { postUserId: req.params.userId },
